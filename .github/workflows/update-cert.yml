@@ -20,13 +20,24 @@ jobs:
 
       - name: Update Cert
         env:
+          # 环境变量根据实际情况自行修改或增删，未设置则使用默认值（参见update.sh）
           DP_Id: ${{ secrets.DP_Id }}
           DP_Key: ${{ secrets.DP_Key }}
+          CF_Token: ${{ secrets.CF_TOKEN }}
+          CF_Account_ID: ${{ secrets.CF_ACCOUNT_ID }}
           ACME_DNS_TYPE: ${{ secrets.ACME_DNS_TYPE }}
           ACME_DOMAIN: ${{ secrets.ACME_DOMAIN }}
           SECRETID: ${{ secrets.SECRETID }}
           SECRETKEY: ${{ secrets.SECRETKEY }}
           CDN_DOMAIN: ${{ secrets.CDN_DOMAIN }}
+          UPDATE_SSL: ${{ secrets.UPDATE_SSL }}
+          ZONE_ID: ${{ secrets.ZONE_ID }}
+          DELETE_OLD_CERTS: ${{ secrets.DELETE_OLD_CERTS }}
+          PUSH_URL: ${{ secrets.PUSH_URL }}
+          PURGE_URL: ${{ secrets.PURGE_URL }}
+          ENABLE_HSTS: ${{ secrets.ENABLE_HSTS }}
+          ENABLE_OCSP: ${{ secrets.ENABLE_OCSP }}
+          ENABLE_HTTP2: ${{ secrets.ENABLE_HTTP2 }}
           CERT_HOME: /home/runner/.acme.sh
           ACME_HOME: /home/runner/.acme.sh
           WORK_DIR: .

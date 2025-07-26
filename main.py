@@ -110,7 +110,7 @@ def run_url_push(id, key, domain, urls_file):
     if isfile(urls_file):
         urls = urls + tools.get_urls_from_file(urls_file)
     cdn_client = cdn.get_cdn_client_instance(id, key)
-    cdn_region = cdn.get_cdn_basic_info(cdn_client, domain)[0].Area
+    if(cdn.get_cdn_basic_info(cdn_client, domain)): cdn_region = cdn.get_cdn_basic_info(cdn_client, domain)[0].Area
     # 预热URL支持area为global的参数，但是为了方便统计用量配额，手动分开刷新
     if cdn_region == 'global':
         cdn_region = ['mainland', 'overseas']
