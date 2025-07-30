@@ -4,7 +4,11 @@ set -u
 
 if [ "${ACME_ENABLED:=true}" = "true" ]; then
   # 使用acme获取/更新证书
-  ${ACME_HOME}/acme.sh ${ACME_PARAMS:-} --force --issue --cert-home ${CERT_HOME} -d ${ACME_DOMAIN} -d *.${ACME_DOMAIN} --dns ${ACME_DNS_TYPE}
+  if [ "${ACME_DISABLE_WILD:=false}" = "true" ]; then
+    ${ACME_HOME}/acme.sh ${ACME_PARAMS:-} --force --issue --cert-home ${CERT_HOME} -d --dns ${ACME_DNS_TYPE}
+  else
+    ${ACME_HOME}/acme.sh ${ACME_PARAMS:-} --force --issue --cert-home ${CERT_HOME} -d ${ACME_DOMAIN} -d *.${ACME_DOMAIN} --dns ${ACME_DNS_TYPE}
+  fi
   # 兼容ecc证书
   if [ -d "${CERT_HOME}/${ACME_DOMAIN}_ecc" ]; then
     mkdir -p ${CERT_HOME}/${ACME_DOMAIN}
