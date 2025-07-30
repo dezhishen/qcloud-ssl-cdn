@@ -4,7 +4,7 @@ set -u
 
 if [ "${ACME_ENABLED:=true}" = "true" ]; then
   # 使用acme获取/更新证书
-  ${ACME_HOME}/acme.sh ${ACME_PARAMS:-} --force --log-level 1 --syslog 3 --issue --cert-home ${CERT_HOME} -d ${ACME_DOMAIN} -d *.${ACME_DOMAIN} --dns ${ACME_DNS_TYPE}
+  ${ACME_HOME}/acme.sh ${ACME_PARAMS:-} --force --log-level 1 --syslog 0 --issue --cert-home ${CERT_HOME} -d ${ACME_DOMAIN} -d *.${ACME_DOMAIN} --dns ${ACME_DNS_TYPE}
   # 兼容ecc证书
   if [ -d "${CERT_HOME}/${ACME_DOMAIN}_ecc" ]; then
     mkdir -p ${CERT_HOME}/${ACME_DOMAIN}
