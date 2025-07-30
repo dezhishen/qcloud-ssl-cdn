@@ -20,6 +20,7 @@ jobs:
 
       - name: Update Cert
         env:
+          DEFAULT_CA_INFO: 0
           # 环境变量根据实际情况自行修改或增删，未设置则使用默认值（参见update.sh）
           DP_Id: ${{ secrets.DP_Id }}
           DP_Key: ${{ secrets.DP_Key }}
